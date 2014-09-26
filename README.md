@@ -1,15 +1,15 @@
-Running instructions - 
+Running instructions - <br>
 
-Compile all the java files first.
-javac *.java
+Compile all the java files first. <br>
+javac *.java <br><br>
 
-Run TFTPClient.java which contains the main method.
-java TFTPClient.java
+Run TFTPClient.java which contains the main method. <br>
+java TFTPClient.java <br>
 
 
-TFTP CLient Usage instructions.
+TFTP CLient Usage instructions. <br>
 
-Available commands:
+Available commands: <br>
 
 connect &nbsp; URL &nbsp;&nbsp;&nbsp;                 URL to remote tftp server (glados.cs.rit.edu on port 69) <br>
 mode &nbsp;			  octet or netascii &nbsp;&nbsp;&nbsp;   set the transfer mode (default octet) <br>
