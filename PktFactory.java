@@ -1,4 +1,6 @@
 /**
+ * PktFactory.java 
+ * 
  * @author Tigran Hakobyan
  * txh7358@rit.edu
  * 
@@ -15,7 +17,7 @@ public class PktFactory {
 	public final byte[] dataOpCode = {0,3};
 	public final byte[] ackOpCode = {0,4};
 	
-	// by default our program uses octer mode.
+	// by default our program uses octet mode.
 	public static String currentMode = "octet";
 	
 	// termination bit in wrq/rrq packet.

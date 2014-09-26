@@ -1,4 +1,6 @@
 /**
+ * TFTPClient.java 
+ * 
  * @author Tigran Hakobyan
  * txh7358@rit.edu
  * 
@@ -96,13 +98,17 @@ public class TFTPClient {
 							continue;
 						}
 						clientSocket = new DatagramSocket(0);
-						if (InetAddress.getByName(getInputHost(userInput)).isReachable(4500)) {
+						try {
 							hostname = InetAddress.getByName(getInputHost(userInput));
-						} else {
-							System.out.println("Hostname you provided is not responding. Try again.");
+							if (!hostname.isReachable(4000)) {
+								System.out.println("Hostname you provided is not responding. Try again.");
+								continue;
+							}
+						} catch (UnknownHostException e) {
+							System.out.println("tftp: nodename nor servname provided, or not known");
 							continue;
-						};
-						
+						}
+
 						pktFactory = new PktFactory(pktLength+4, hostname, tftpPort);
 						System.out.println("Connecting " + 
 								hostname.getCanonicalHostName() + " at the port number " + tftpPort);
@@ -137,7 +143,7 @@ public class TFTPClient {
 							
 							try {
 								receivedPkt  = new DatagramPacket(buf, buf.length);
-								clientSocket.setSoTimeout(40000);
+								clientSocket.setSoTimeout(15000);
 								clientSocket.receive(receivedPkt);
 								
 								byte[] dPkt = receivedPkt.getData();
@@ -149,13 +155,22 @@ public class TFTPClient {
 									String errorMsg = pktFactory.getErrorMessage(dPkt);
 									System.out.println(errorMsg);
 									break;
-								} 
-								// second time getting the file it's getting inside this why?
-								if (receivedPkt.getLength() != pktLength + 4  && ropCode[1] == 3 ) {
+								}
+
+								if (receivedPkt.getLength() < pktLength + 4  && ropCode[1] == 3 ) {
 									
 									FileOutputStream fstream = new FileOutputStream(filename);
+									// Let's get the last data pkt for the current transfering file.
+									byte[] fileDataBytes = pktFactory.getDataBytes(dPkt);
+									outputStream.write(fileDataBytes);
 									fstream.write(outputStream.toByteArray());
 									fstream.close();
+									
+									// It's time to send the last ACK message before Normal termination.
+									byte[] bNum = pktFactory.getBlockNum(dPkt);
+									DatagramPacket sPkt = pktFactory.createAckPacket(bNum, receivedPkt.getPort());
+									clientSocket.send(sPkt);
+									
 									System.out.println("File transfer is finished.");
 									break;		
 								}
