@@ -7,7 +7,7 @@ Run TFTPClient.java which contains the main method. <br>
 java TFTPClient.java <br>
 
 
-TFTP CLient Usage instructions. <br>
+TFTP Client Usage instructions. <br>
 
 Available commands: <br>
 
