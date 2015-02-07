@@ -1,17 +1,34 @@
-Running instructions - <br>
+A simple TFTP Client in java. 
 
-Compile all the java files first. <br>
+
+# Running instructions
+
+### Compile all the java files first:
+
+```java
 javac *.java <br><br>
+```
 
-Run TFTPClient.java which contains the main method. <br>
+### Run TFTPClient.java which contains the main method.
+
+```java
 java TFTPClient.java <br>
+```
+
+## TFTP Client Usage instructions.
+
+### Available commands:
+
+| Command        | args           | desc  |
+| -------------  |:--------------:| -----:|
+| connect        | URL            | URL to remote tftp server (e.g glados.cs.rit.edu on port 69) |
+| mode           | octet or netascii      |    set the transfer mode (default octet) |
+| get            | filename      |    receive file |
+| quit           |               |    exit tftp <br> |
+| ?              |               |    print help  |
 
 
-TFTP Client Usage instructions. <br>
-
-Available commands: <br>
-
-connect &nbsp; URL &nbsp;&nbsp;&nbsp;                 URL to remote tftp server (glados.cs.rit.edu on port 69) <br>
+connect  URL URL to remote tftp server (glados.cs.rit.edu on port 69) <br>
 mode &nbsp;			  octet or netascii &nbsp;&nbsp;&nbsp;   set the transfer mode (default octet) <br>
 get&nbsp;       filename&nbsp;&nbsp;&nbsp;			      receive file <br>
 quit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		  	                    exit tftp <br>
