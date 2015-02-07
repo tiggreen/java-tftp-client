@@ -1,7 +1,7 @@
-A simple TFTP Client in java. 
+# A simple TFTP Client in java. 
 
 
-# Running instructions
+## Running instructions
 
 ### Compile all the java files first:
 
