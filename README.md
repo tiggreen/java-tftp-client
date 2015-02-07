@@ -6,7 +6,7 @@ A simple TFTP Client in java.
 ### Compile all the java files first:
 
 ```java
-javac *.java <br><br>
+javac *.java
 ```
 
 ### Run TFTPClient.java which contains the main method.
